@@ -111,8 +111,8 @@ button:hover {
 ## Setup Gemini API 
 
 Google AI for Developers (https://ai.google.dev/)
-    - Navigate to Docs -> Quickstart -> Web(SDK)
-    - Install Gemini API to HTML by CDN link
+1. Navigate to Docs -> Quickstart -> Web(SDK)
+2. Install Gemini API to HTML by CDN link
     
 ```html
 <script type="importmap">
@@ -123,7 +123,7 @@ Google AI for Developers (https://ai.google.dev/)
   }
 </script>
 ```
-   - Import Gemini API library  
+Import Gemini API library  
 ```html
 <script type="module">
     import { GoogleGenerativeAI } from "@google/generative-ai";
