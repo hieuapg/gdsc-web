@@ -213,7 +213,8 @@ Script:
 <script type="module">
         document.getElementById('myButton').addEventListener('click', generate);
         import { GoogleGenerativeAI } from "@google/generative-ai";
-        const genAI = new GoogleGenerativeAI("AIzaSyBzyC9zhuIvRRvhFVxZYhskWeObQWiV-ik");
+        const API_KEY = "...";
+        const genAI = new GoogleGenerativeAI("API_KEY");
 
         async function generate() {
             const model = genAI.getGenerativeModel({ model: "gemini-pro" });
