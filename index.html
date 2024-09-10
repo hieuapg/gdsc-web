@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative AI Chat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <script type="importmap">
+        {
+          "imports": {
+            "@google/generative-ai": "https://esm.run/@google/generative-ai"
+          }
+        }
+    </script>
+    <header>
+        <h1>Generative AI Chat</h1>
+    </header>
+    <main>
+        <section id="query-section">
+            <h2>Ask a Question</h2>
+            <form id="query-form">
+                <input type="text" id="query" placeholder="Type your question">
+                <button type="button" id="myButton">Ask</button>
+            </form>
+        </section>
+        <section id="response-section">
+            <h2>Response</h2>
+            <div id="response-container">
+                <!-- Response will be displayed here -->
+            </div>
+        </section>
+    </main>
+    <script type="module">
+        document.getElementById('myButton').addEventListener('click', generate);
+        import { GoogleGenerativeAI } from "@google/generative-ai";
+        const genAI = new GoogleGenerativeAI("AIzaSyBzyC9zhuIvRRvhFVxZYhskWeObQWiV-ik");
+
+        async function generate() {
+            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
+            const prompt = document.getElementById('query').value;
+
+            const result = await model.generateContent(prompt);
+            const response = await result.response;
+            let text = response.text();
+
+            // Replace newlines with <br> for proper display
+            text = text
+                .replace(/##\s*(.*?)\s*\n/g, "<h2>$1</h2><br>")
+                .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+                .replace(/\n/g, "<br>");
+
+            document.getElementById('response-container').innerHTML = text;
+            console.log(text);
+        }
+    </script>
+</body>
+
+</html>
