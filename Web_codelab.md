@@ -16,7 +16,7 @@ add screen attribute and complete setup in game controller class
 
 
 main.py
-```python
+```javascript
 class GameController:
     def __init__(self) -> None:
 
