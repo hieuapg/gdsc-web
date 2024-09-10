@@ -30,51 +30,82 @@ index.html
 </html> 
 ```
 
-## Make Snake body
+## Make HTML body
 
-snake.py:
-    - add visual setup and position attribute to Segment class init method
-    - add head attribute to Snake class init method
-    - add segments attribute to snake class init method (1 head +  2 segments)
-    - add previous tail coordinate attribute to snake class init method 
+index.html:
+    - add main components into <body> to build up the page structure (2 sections: input-button + response field)
+    - assign ids to the elements
 
-```python
-from turtle import Turtle 
-
-# a unit of the snake
-class Segment:
-    def __init__(self, initial_position) -> None:
-        self.position = initial_position
-        self.turtle = Turtle(shape='square')
-        self.turtle.color('white')
-        self.turtle.penup()
-        self.turtle.goto(initial_position)
-
-class Head(Segment):
-    def __init__(self, initial_position) -> None:
-        super().__init__(initial_position)
-
-class Snake:
-    def __init__(self) -> None:
-        self.head = Head((0,0))
-        self.segments = [self.head, Segment((-20, 0)), Segment((-40, 0))]
-        self.previous_tail_coord = (-40, 0)
+```html
+    <header>
+        <h1>Generative AI Chat</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Ask a Question</h2>
+            <form>
+                <input type="text" id="query" placeholder="Type your question">
+                <button type="button" id="myButton">Ask</button>
+            </form>
+        </section>
+        <section>
+            <h2>Response</h2>
+            <div id="response-container">
+                <!-- Response will be displayed here -->
+            </div>
+        </section>
+    </main>
 ```
 
-main.py:
-    - create instance of snake inside Gamecontroller class init methood
+style.css
+    - create and link CSS file to HTML main page
+    - edit CSS to format the styles of HTML elements
 
-```python
-class GameController:
-    def __init__(self) -> None:
+```css
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
-        self.screen = Screen()
-        self.screen.setup(width=600, height=600)
-        self.screen.bgcolor('black')
-        self.screen.tracer(0) #remove glitch when snake move
-        
-        self.snake = Snake()
+header {
+    background: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
 
+main {
+    padding: 1em;
+}
+
+form {
+    margin-bottom: 1em;
+}
+
+input {
+    padding: 0.5em;
+    font-size: 1em;
+}
+
+button {
+    padding: 0.5em;
+    font-size: 1em;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+#response-container {
+    border: 1px solid #ddd;
+    padding: 1em;
+    background: #f9f9f9;
+}
 ```
 
 ## Moving Snake forward
