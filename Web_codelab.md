@@ -33,8 +33,8 @@ index.html
 ## Make HTML body
 
 index.html:
-    - add main components into <body> to build up the page structure (2 sections: input-button + response field)
-    - assign ids to the elements
+1. add main components into <body> to build up the page structure (2 sections: input-button + response field)
+2. assign ids to the elements
 
 ```html
     <header>
@@ -58,8 +58,8 @@ index.html:
 ```
 
 style.css
-    - create and link CSS file to HTML main page
-    - edit CSS to format the styles of HTML elements
+1. create and link CSS file to HTML main page
+2. edit CSS to format the styles of HTML elements
 
 ```css
 body {
@@ -123,7 +123,7 @@ Google AI for Developers (https://ai.google.dev/)
   }
 </script>
 ```
-Import Gemini API library  
+3. Import Gemini API library  
 ```html
 <script type="module">
     import { GoogleGenerativeAI } from "@google/generative-ai";
