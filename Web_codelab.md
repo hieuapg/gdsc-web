@@ -214,7 +214,7 @@ Script:
         document.getElementById('myButton').addEventListener('click', generate);
         import { GoogleGenerativeAI } from "@google/generative-ai";
         const API_KEY = "...";
-        const genAI = new GoogleGenerativeAI("API_KEY");
+        const genAI = new GoogleGenerativeAI(API_KEY);
 
         async function generate() {
             const model = genAI.getGenerativeModel({ model: "gemini-pro" });
