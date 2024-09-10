@@ -78,18 +78,58 @@
     &lt;/section&gt;
 &lt;/main&gt;
 </code></pre>
-<p>main.py: - create instance of snake inside Gamecontroller class init methood</p>
-<pre><code language="language-python" class="language-python">class GameController:
-    def __init__(self) -&gt; None:
+<p>style.css:</p>
+<ol>
+  <li>create and link CSS file to HTML main page</li>
+  <li>edit CSS to format the styles of HTML elements</li>
+</ol>
+<pre><code language="language-css" class="language-css">
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
-        self.screen = Screen()
-        self.screen.setup(width=600, height=600)
-        self.screen.bgcolor(&#39;black&#39;)
-        self.screen.tracer(0) #remove glitch when snake move
-        
-        self.snake = Snake()
+header {
+    background: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
 
+main {
+    padding: 1em;
+}
+
+form {
+    margin-bottom: 1em;
+}
+
+input {
+    padding: 0.5em;
+    font-size: 1em;
+}
+
+button {
+    padding: 0.5em;
+    font-size: 1em;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+#response-container {
+    border: 1px solid #ddd;
+    padding: 1em;
+    background: #f9f9f9;
+}
 </code></pre>
+
 
 
       </google-codelab-step>
