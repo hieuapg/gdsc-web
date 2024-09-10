@@ -5,28 +5,29 @@ id: docs
 
 ## Introduction
 
-We're gonna make Snake game in Python!
+We're gonna make AI Chatbot with Gemini API and HTML/CSS/JS !
 
 <img src="docs\img\intro.gif" width="270" height="600"> 
 (Change image, add one for finished game)
 
 ## Setup screen
 
-add screen attribute and complete setup in game controller class
+setup HTML file
 
 
-main.py
-```javascript
-class GameController:
-    def __init__(self) -> None:
-
-        self.screen = Screen()
-        self.screen.setup(width=600, height=600)
-        self.screen.bgcolor('black')
-        self.screen.tracer(0) #remove glitch when snake move
-
-        self.screen.exitonclick()  #Have to be b4 exit on click
-        self.screen.mainloop() # keep the screen even after running 
+index.html
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini Chatbot</title>
+</head>
+<body>
+    
+</body>
+</html> 
 ```
 
 ## Make Snake body
