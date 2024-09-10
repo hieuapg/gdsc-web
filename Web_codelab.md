@@ -57,7 +57,7 @@ index.html:
     </main>
 ```
 
-style.css
+style.css:
 1. create and link CSS file to HTML main page
 2. edit CSS to format the styles of HTML elements
 
@@ -110,9 +110,10 @@ button:hover {
 
 ## Setup Gemini API 
 
-Google AI for Developers (https://ai.google.dev/)
-1. Navigate to Docs -> Quickstart -> Web(SDK)
-2. Install Gemini API to HTML by CDN link
+### Install and import Gemini API
+1. Google AI for Developers (https://ai.google.dev/)
+2. Navigate to Docs -> Quickstart -> Web(SDK)
+3. Install Gemini API to HTML by CDN link
     
 ```html
 <script type="importmap">
@@ -123,7 +124,7 @@ Google AI for Developers (https://ai.google.dev/)
   }
 </script>
 ```
-3. Import Gemini API library  
+4. Import Gemini API library  
 ```html
 <script type="module">
     import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -133,130 +134,39 @@ Google AI for Developers (https://ai.google.dev/)
 </script>
 ```
 
-Retrieve API Key
+### Retrieve API Key
 1. Navigate to Google AI Studio -> Get API Key
 2. Select "Generative Language Client" -> Create Key
-3. Copy Key to API_KEY
+3. Copy Key to API_KEY (keep API_KEY secret!)
 
-```python
-class GameController:
-    def __init__(self) -> None:
-        self.game_ended = False #Game state
-        self.screen = Screen()
-        self.screen.setup(width=600, height=600)
-        self.screen.bgcolor('black')
-        self.screen.tracer(0) #remove glitch when snake move
-        self.snake = Snake()
+## Setup structure to make the requests
 
-        self.game_loop()
-        self.screen.exitonclick()  #Have to be b4 exit on click
-        self.screen.mainloop()
-      
-     def game_loop(self):
-        while not self.game_ended:
-            self.snake.move_forward()
-            sleep(0.1)
+index.html:
+1. setup async function generate() for requests
+2. add event listener for request command
 
-```
+```html
+<script type="module">
+    document.getElementById('myButton').addEventListener('click', generate); // Event listener
+    import { GoogleGenerativeAI } from "@google/generative-ai";
 
-## Directing the Snake
-
-snake.py:
-    - Add heading attribute to segment class
-    - Complete turn left, right, up down methods in Head
-    - Complete turn left and turn right methods in Snake
-
-
-```python
-class Segment:
-    def __init__(self, initial_position) -> None:
-        self.position = initial_position
-        self.turtle = Turtle()
-        self.turtle.shape("square")
-        self.turtle.penup()
-        self.turtle.color("white")
-        self.turtle.goto(initial_position)
-        self.direction = 'right' #default Snake's heading
-
-class Head(Segment):
-    def __init__(self, initial_position) -> None:
-        super().__init__(initial_position)
-        
-    def move_forward(self):
-        self.turtle.forward(20)
-        self.position = self.turtle.pos()
-        
-    def turn_left(self):
-        if self.direction != 'right':
-            self.turtle.setheading(180)
-            self.direction = 'left'
+    const API_KEY = "...";
+    const genAI = new GoogleGenerativeAI(API_KEY);
+    async function generate() <!-- requests function --> {
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     
-    def turn_right(self):
-        if self.direction != 'left':
-            self.turtle.setheading(0)
-            self.direction = 'right'
-        
-    def turn_up(self):
-        if self.direction != 'down':
-            self.turtle.setheading(90)
-            self.direction = 'up'
-        
-    def turn_down(self):
-        if self.direction != 'up':
-            self.turtle.setheading(270)
-            self.direction = 'down'
-
-class Snake:
-    def __init__(self) -> None:
-        self.head = Head((0, 0))
-        self.segments = [self.head, Segment((-20, 0)), Segment((-40, 0))]
-        self.previous_tail_coord = (-40, 0)
+        const prompt = document.getElementById('query').value;
     
-    def move_foward(self):    
-        self.previous_tail_coord = self.segments[-1].get_position()
-        for i in range (len(self.segments) - 1, 0, -1):
-            self.segments[i].change_position(self.segments[i - 1].get_position())
-        self.head.move_forward()
-        
-    def turn_left(self):
-        self.head.turn_left()
-        
-    def turn_right(self):
-        self.head.turn_right()
-        
-    def turn_up(self):
-        self.head.turn_up()
-        
-    def turn_down(self):
-        self.head.turn_down()
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        let text = response.text(); 
+    
+        console.log(text);
+            }
+</script>
 ```
 
-main.py:
-    - Add screen listener to screen attribute in Game Controller
-    - add onkeypress that turns snake left on 'Left', 'Right', 'Up', 'Down' key press
-
-
-```python
-class GameController:
-    def __init__(self) -> None:
-        self.game_ended = False
-        self.screen = Screen()
-        self.screen.setup(width=600, height=600)
-        self.screen.bgcolor('black')
-        self.screen.tracer(0)
-        self.snake = Snake()
-        
-        #add listeners
-        self.screen.listen()
-        self.screen.onkeypress(self.snake.turn_left, "Left")
-        self.screen.onkeypress(self.snake.turn_right, "Right")
-        self.screen.onkeypress(self.snake.turn_up, "Up")
-        self.screen.onkeypress(self.snake.turn_down, "Down")
-
-        self.screen.exitonclick()  #Have to be b4 exit on click
-        self.screen.mainloop()
-
-```
+Test the function, it should display on the console if correct
 
 ## Create Food
 
