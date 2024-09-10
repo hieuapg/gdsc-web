@@ -108,51 +108,29 @@ button:hover {
 }
 ```
 
-## Moving Snake forward
+## Setup Gemini API 
 
-snake.py:
-    - Complete get_position and change_position Segment methods
-    - Complete move forward Head method
-    - Complete move forward Snake method
-
-
-```python
-class Segment:
-  def __init__(self, initial_position) -> None:
-        self.position = initial_position
-        self.turtle = Turtle(shape='square')
-        self.turtle.color('white')
-        self.turtle.penup()
-        self.turtle.goto(initial_position)
-
-  # return position 
-    def get_position(self):
-        return self.position
-
-    # move segment to coordinate
-    def change_position(self, new_position):
-        self.turtle.goto(new_position)
-        self.position = new_position
-
-class Head(Segment):
-  def __init__(self, initial_position) -> None:
-        super().__init__(initial_position)
-
-  def move_forward(self):
-        self.turtle.forward(20)
-        self.position = self.turtle.pos()
+Google AI for Developers (https://ai.google.dev/)
+    - Navigate to Docs -> Quickstart -> Web(SDK)
+    - Install Gemini API to HTML by CDN link
     
-class Snake:
-  def __init__(self) -> None:
-        self.head = Head((0,0))
-        self.segments = [self.head, Segment((-20, 0)), Segment((-40, 0))]
-        self.previous_tail_coord = (-40, 0)
+```html
+<script type="importmap">
+  {
+    "imports": {
+      "@google/generative-ai": "https://esm.run/@google/generative-ai"
+    }
+  }
+</script>
+```
+   - Import Gemini API library  
+```html
+<script type="module">
+    import { GoogleGenerativeAI } from "@google/generative-ai";
 
-   def move_forward(self): 
-        self.previous_tail_coord = self.segments[-1].get_position()
-        for i in range(len(self.segments) - 1, 0, -1): 
-            self.segments[i].change_position(self.segments[i - 1].get_position()) 
-        self.head.move_forward()
+    // Fetch your API_KEY
+    const API_KEY = "..."; //Placeholder for API key, will retrieve later
+</script>
 ```
 
 main.py:
