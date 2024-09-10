@@ -129,14 +129,14 @@ Google AI for Developers (https://ai.google.dev/)
     import { GoogleGenerativeAI } from "@google/generative-ai";
 
     // Fetch your API_KEY
-    const API_KEY = "..."; //Placeholder for API key, will retrieve later
+    const API_KEY = "...";
 </script>
 ```
 
-main.py:
-    - Add attribute to hold game state
-    - Add to game loop method that moves snake forward while game not Over
-    - Add tracer(0) to screen and include sleep, update in game loop method
+Retrieve API Key
+1. Navigate to Google AI Studio -> Get API Key
+2. Select "Generative Language Client" -> Create Key
+3. Copy Key to API_KEY
 
 ```python
 class GameController:
