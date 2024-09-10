@@ -1,7 +1,7 @@
-summary: USF GDSC Spring 2024 Python Snake Workshop
+summary: USF GDSC Fall 2024 Web Development Workshop
 id: docs
 
-# USF GDSC Spring 2024 Flutter Workshop
+# USF GDSC Fall 2024 Web Development Workshop
 
 ## Introduction
 
